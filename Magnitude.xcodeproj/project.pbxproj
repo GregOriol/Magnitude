@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		090374B81BE6A3A7006B052C /* MagnitudeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 090374B71BE6A3A7006B052C /* MagnitudeView.h */; };
-		090374BA1BE6A3A7006B052C /* MagnitudeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 090374B91BE6A3A7006B052C /* MagnitudeView.m */; };
+		090374C21BE6A40A006B052C /* Magnitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090374C11BE6A40A006B052C /* Magnitude.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		090374B41BE6A3A7006B052C /* Magnitude.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Magnitude.saver; sourceTree = BUILT_PRODUCTS_DIR; };
-		090374B71BE6A3A7006B052C /* MagnitudeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagnitudeView.h; sourceTree = "<group>"; };
-		090374B91BE6A3A7006B052C /* MagnitudeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagnitudeView.m; sourceTree = "<group>"; };
 		090374BB1BE6A3A7006B052C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		090374C11BE6A40A006B052C /* Magnitude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Magnitude.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,9 +46,8 @@
 		090374B61BE6A3A7006B052C /* Magnitude */ = {
 			isa = PBXGroup;
 			children = (
-				090374B71BE6A3A7006B052C /* MagnitudeView.h */,
-				090374B91BE6A3A7006B052C /* MagnitudeView.m */,
 				090374BB1BE6A3A7006B052C /* Info.plist */,
+				090374C11BE6A40A006B052C /* Magnitude.swift */,
 			);
 			path = Magnitude;
 			sourceTree = "<group>";
@@ -62,7 +59,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				090374B81BE6A3A7006B052C /* MagnitudeView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				090374BA1BE6A3A7006B052C /* MagnitudeView.m in Sources */,
+				090374C21BE6A40A006B052C /* Magnitude.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,11 +218,15 @@
 		090374BF1BE6A3A7006B052C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Magnitude/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = idriskhenchil.Magnitude;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -234,9 +234,12 @@
 		090374C01BE6A3A7006B052C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Magnitude/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = idriskhenchil.Magnitude;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = saver;
