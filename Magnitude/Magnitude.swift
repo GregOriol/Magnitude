@@ -11,7 +11,7 @@ import ScreenSaver
 public class Magnitude: ScreenSaverView {
     public override func drawRect(rect: NSRect) {
         let quote = "Great companies are built on great products." as NSString
-        let author = "Elon Musk"
+        let author = "-" + "Elon Musk"
         
         let attributes = [
             NSForegroundColorAttributeName: NSColor.blackColor()
