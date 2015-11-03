@@ -91,7 +91,7 @@ public class Magnitude: ScreenSaverView {
         background.setFill()
         NSBezierPath.fillRect(rect)
         
-        let quote = "\"It's better to be a pirate than to join the Navy.\"" as String
+        let quote = "\"It's better to be a pirate\"" as String
         let author = "-" + "Elon Musk"
         
         let attributes = [
@@ -131,7 +131,6 @@ public class Magnitude: ScreenSaverView {
                 width: authorSize.width,
                 height: authorSize.height
             )
-            
         }
         else{
             //All good as is
@@ -140,6 +139,14 @@ public class Magnitude: ScreenSaverView {
                 y: round((bounds.height - quoteSize.height) / 2),
                 width: quoteSize.width,
                 height: quoteSize.height
+            )
+            
+            //Adjust author to fit
+            authorRect = CGRect(
+                x: round((bounds.width - authorSize.width) / 2),
+                y: round(((bounds.height - quoteSize.height) / 2) - 40),
+                width: authorSize.width,
+                height: authorSize.height
             )
         }
         
@@ -170,7 +177,7 @@ public class Magnitude: ScreenSaverView {
         
         time.drawInRect(timeRect, withAttributes: timeAttributes as? [String: AnyObject])
 
-        NSCursor.hide()
+        //NSCursor.hide()
     }
     
     public override init?(frame: NSRect, isPreview: Bool) {
