@@ -30,28 +30,57 @@ public class Magnitude: ScreenSaverView {
         let hour = components.hour
         
         var background:NSColor
+        var quoteAttributes: NSDictionary!
+        var authorAttributes: NSDictionary!
+        var timeAttributes: NSDictionary!
         
         if(isNight(hour)){
             //Set background as dark
             background = NSColor(red:0.01, green:0.01, blue:0, alpha:1)
+            
+            //Set text for dark mode
+            quoteAttributes = [
+                NSForegroundColorAttributeName: NSColor.whiteColor()
+            ]
+            
+            authorAttributes = [
+                NSForegroundColorAttributeName: NSColor.whiteColor()
+            ]
+            
+            timeAttributes = [
+                NSForegroundColorAttributeName: NSColor(red:1, green:0.24, blue:0.22, alpha:1)
+            ]
         }
         else{
             //Set background as light
             background = NSColor(red:1, green:1, blue:1, alpha:1)
+            
+            //Set text for light mode
+            quoteAttributes = [
+                NSForegroundColorAttributeName: NSColor.blackColor()
+            ]
+            
+            authorAttributes = [
+                NSForegroundColorAttributeName: NSColor.blackColor()
+            ]
+            
+            timeAttributes = [
+                NSForegroundColorAttributeName: NSColor(red:0.13, green:0.75, blue:0.99, alpha:1)
+            ]
         }
         
         background.setFill()
         NSBezierPath.fillRect(rect)
         
-        let quote = "Great companies are built on great products." as NSString
+        let quote = "\"Great companies are built on great products.\"" + String(bounds.width) + String(bounds.height) as NSString
         let author = "-" + "Elon Musk"
         
         let attributes = [
             NSForegroundColorAttributeName: NSColor.blackColor()
         ]
         
-        let quoteSize = quote.sizeWithAttributes(attributes)
-        let authorSize = author.sizeWithAttributes(attributes)
+        let quoteSize = quote.sizeWithAttributes(quoteAttributes as? [String: AnyObject])
+        let authorSize = author.sizeWithAttributes(authorAttributes as? [String: AnyObject])
         
         let authorRect = CGRect(
             x: round((bounds.width - authorSize.width) / 2),
@@ -68,18 +97,14 @@ public class Magnitude: ScreenSaverView {
         )
         
         //Draw text on canvas
-        quote.drawInRect(quoteRect, withAttributes: attributes)
-        author.drawInRect(authorRect, withAttributes: attributes)
+        quote.drawInRect(quoteRect, withAttributes: quoteAttributes as? [String: AnyObject])
+        author.drawInRect(authorRect, withAttributes: authorAttributes as? [String: AnyObject])
         
         
         //Add time label
         var time = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         
-        let timeAttributes = [
-            NSForegroundColorAttributeName: NSColor.blackColor()
-        ]
-        
-        let timeSize = time.sizeWithAttributes(timeAttributes)
+        let timeSize = time.sizeWithAttributes(timeAttributes as? [String: AnyObject])
 
         let timeRect = CGRect(
             x: round((bounds.width - timeSize.width) / 2),
@@ -97,7 +122,7 @@ public class Magnitude: ScreenSaverView {
             time = String(outputFormat.stringFromDate(date))
         }
         
-        time.drawInRect(timeRect, withAttributes: timeAttributes)
+        time.drawInRect(timeRect, withAttributes: timeAttributes as? [String: AnyObject])
 
     }
     
