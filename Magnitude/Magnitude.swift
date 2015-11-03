@@ -44,7 +44,7 @@ public class Magnitude: ScreenSaverView {
         NSBezierPath.fillRect(rect)
         
         let quote = "Great companies are built on great products." as NSString
-        let author = "Elon Musk"
+        let author = "-" + "Elon Musk"
         
         let attributes = [
             NSForegroundColorAttributeName: NSColor.blackColor()
