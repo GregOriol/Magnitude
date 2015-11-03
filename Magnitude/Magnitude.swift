@@ -28,6 +28,9 @@ public class Magnitude: ScreenSaverView {
     public override func drawRect(rect: NSRect) {
         let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("getTime"), userInfo: nil, repeats: true)
 
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Center
+        
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Hour, .Minute], fromDate: date)
@@ -46,16 +49,19 @@ public class Magnitude: ScreenSaverView {
             quoteAttributes = [
                 NSForegroundColorAttributeName: NSColor.whiteColor(),
                 NSFontAttributeName: fontA,
+                NSParagraphStyleAttributeName: paragraphStyle
             ]
             
             authorAttributes = [
                 NSForegroundColorAttributeName: NSColor.whiteColor(),
                 NSFontAttributeName: fontB,
+                NSParagraphStyleAttributeName: paragraphStyle
             ]
             
             timeAttributes = [
                 NSForegroundColorAttributeName: NSColor(red:1, green:0.24, blue:0.22, alpha:1),
-                NSFontAttributeName: fontC
+                NSFontAttributeName: fontC,
+                NSParagraphStyleAttributeName: paragraphStyle
             ]
         }
         else{
@@ -66,23 +72,26 @@ public class Magnitude: ScreenSaverView {
             quoteAttributes = [
                 NSForegroundColorAttributeName: NSColor.blackColor(),
                 NSFontAttributeName: fontA,
+                NSParagraphStyleAttributeName: paragraphStyle
             ]
             
             authorAttributes = [
                 NSForegroundColorAttributeName: NSColor.blackColor(),
                 NSFontAttributeName: fontB,
+                NSParagraphStyleAttributeName: paragraphStyle
             ]
             
             timeAttributes = [
                 NSForegroundColorAttributeName: NSColor(red:0.13, green:0.75, blue:0.99, alpha:1),
-                NSFontAttributeName: fontC
+                NSFontAttributeName: fontC,
+                NSParagraphStyleAttributeName: paragraphStyle
             ]
         }
         
         background.setFill()
         NSBezierPath.fillRect(rect)
         
-        let quote = "\"Great companies are built on great products.\"" as String
+        let quote = "\"It's better to be a pirate than to join the Navy.\"" as String
         let author = "-" + "Elon Musk"
         
         let attributes = [
@@ -93,16 +102,36 @@ public class Magnitude: ScreenSaverView {
         let authorSize = author.sizeWithAttributes(authorAttributes as? [String: AnyObject])
         
         var quoteRect: CGRect!
+        var authorRect: CGRect!
         
         //More lines
-        if(quote.characters.count > 50){
+        if(quote.characters.count > 100){
             //Get ready for another line
             quoteRect = CGRect(
-                x: round((bounds.width - quoteSize.width / 2) / 2),
+                x: round((bounds.width - quoteSize.width / 1.20) / 2),
                 y: round((bounds.height - quoteSize.height) / 2) + quoteSize.height,
-                width: quoteSize.width / 2,
+                width: quoteSize.width / 1.20,
+                height: quoteSize.height * 3
+            )
+        }
+            
+        else if(quote.characters.count > 50){
+            //Get ready for another line
+            quoteRect = CGRect(
+                x: round((bounds.width - quoteSize.width / 1.20) / 2),
+                y: round((bounds.height - quoteSize.height) / 2) + quoteSize.height,
+                width: quoteSize.width / 1.20,
                 height: quoteSize.height * 2
             )
+            
+            //Adjust author to fit
+            authorRect = CGRect(
+                x: round((bounds.width - authorSize.width) / 2),
+                y: round(((bounds.height - quoteSize.height) / 2)),
+                width: authorSize.width,
+                height: authorSize.height
+            )
+            
         }
         else{
             //All good as is
@@ -113,13 +142,6 @@ public class Magnitude: ScreenSaverView {
                 height: quoteSize.height
             )
         }
-        
-        let authorRect = CGRect(
-            x: round((bounds.width - authorSize.width) / 2),
-            y: round(((bounds.height - quoteSize.height) / 2) - 40),
-            width: authorSize.width,
-            height: authorSize.height
-        )
         
         //Draw text on canvas
         quote.drawInRect(quoteRect, withAttributes: quoteAttributes as? [String: AnyObject])
@@ -138,7 +160,6 @@ public class Magnitude: ScreenSaverView {
             height: timeSize.height
         )
         
-        
         func getTime() {
             let date = NSDate()
             let outputFormat = NSDateFormatter()
@@ -149,6 +170,7 @@ public class Magnitude: ScreenSaverView {
         
         time.drawInRect(timeRect, withAttributes: timeAttributes as? [String: AnyObject])
 
+        NSCursor.hide()
     }
     
     public override init?(frame: NSRect, isPreview: Bool) {
