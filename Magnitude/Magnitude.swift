@@ -11,6 +11,8 @@ import Cocoa
 
 public class Magnitude: ScreenSaverView {
     private var fontA: NSFont!
+    private var fontB: NSFont!
+    private var fontC: NSFont!
 
     func isNight(time: Int) -> Bool{
         if(time >= 6 && time < 22){
@@ -47,11 +49,13 @@ public class Magnitude: ScreenSaverView {
             ]
             
             authorAttributes = [
-                NSForegroundColorAttributeName: NSColor.whiteColor()
+                NSForegroundColorAttributeName: NSColor.whiteColor(),
+                NSFontAttributeName: fontB,
             ]
             
             timeAttributes = [
-                NSForegroundColorAttributeName: NSColor(red:1, green:0.24, blue:0.22, alpha:1)
+                NSForegroundColorAttributeName: NSColor(red:1, green:0.24, blue:0.22, alpha:1),
+                NSFontAttributeName: fontC
             ]
         }
         else{
@@ -65,11 +69,13 @@ public class Magnitude: ScreenSaverView {
             ]
             
             authorAttributes = [
-                NSForegroundColorAttributeName: NSColor.blackColor()
+                NSForegroundColorAttributeName: NSColor.blackColor(),
+                NSFontAttributeName: fontB,
             ]
             
             timeAttributes = [
-                NSForegroundColorAttributeName: NSColor(red:0.13, green:0.75, blue:0.99, alpha:1)
+                NSForegroundColorAttributeName: NSColor(red:0.13, green:0.75, blue:0.99, alpha:1),
+                NSFontAttributeName: fontC
             ]
         }
         
@@ -168,6 +174,8 @@ public class Magnitude: ScreenSaverView {
     
     private func updateFont() {
         fontA = fontWithSizeA(bounds.size.width / 32)
+        fontB = fontWithSizeB(bounds.size.width / 55)
+        fontC = fontWithSizeC(bounds.size.width / 52)
     }
     
     private func fontWithSizeA(fontSize: CGFloat) -> NSFont {
@@ -188,5 +196,44 @@ public class Magnitude: ScreenSaverView {
             ])
         return NSFont(descriptor: fontDescriptor, size: fontSize)!
     }
+    
+    private func fontWithSizeB(fontSize: CGFloat) -> NSFont {
+        let fontB: NSFont
+        if #available(OSX 10.11, *) {
+            fontB = NSFont.systemFontOfSize(fontSize, weight: NSFontWeightUltraLight)
+        } else {
+            fontB = NSFont(name: "HelveticaNeue-Thin", size: fontSize)!
+        }
+        
+        let fontDescriptor = fontB.fontDescriptor.fontDescriptorByAddingAttributes([
+            NSFontFeatureSettingsAttribute: [
+                [
+                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
+                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
+                ]
+            ]
+            ])
+        return NSFont(descriptor: fontDescriptor, size: fontSize)!
+    }
+    
+    private func fontWithSizeC(fontSize: CGFloat) -> NSFont {
+        let fontC: NSFont
+        if #available(OSX 10.11, *) {
+            fontC = NSFont.systemFontOfSize(fontSize, weight: NSFontWeightThin)
+        } else {
+            fontC = NSFont(name: "HelveticaNeue-Thin", size: fontSize)!
+        }
+        
+        let fontDescriptor = fontC.fontDescriptor.fontDescriptorByAddingAttributes([
+            NSFontFeatureSettingsAttribute: [
+                [
+                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
+                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
+                ]
+            ]
+            ])
+        return NSFont(descriptor: fontDescriptor, size: fontSize)!
+    }
+
     
 }
