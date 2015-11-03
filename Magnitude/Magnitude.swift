@@ -116,7 +116,7 @@ public class Magnitude: ScreenSaverView {
         
         let authorRect = CGRect(
             x: round((bounds.width - authorSize.width) / 2),
-            y: round(((bounds.height - authorSize.height) / 2) - 40),
+            y: round(((bounds.height - quoteSize.height) / 2) - 40),
             width: authorSize.width,
             height: authorSize.height
         )
