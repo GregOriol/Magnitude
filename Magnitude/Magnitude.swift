@@ -7,9 +7,11 @@
 //
 
 import ScreenSaver
+import Cocoa
 
 public class Magnitude: ScreenSaverView {
-    
+    private var fontA: NSFont!
+
     func isNight(time: Int) -> Bool{
         if(time >= 6 && time < 22){
             //Is day
@@ -40,7 +42,8 @@ public class Magnitude: ScreenSaverView {
             
             //Set text for dark mode
             quoteAttributes = [
-                NSForegroundColorAttributeName: NSColor.whiteColor()
+                NSForegroundColorAttributeName: NSColor.whiteColor(),
+                NSFontAttributeName: fontA,
             ]
             
             authorAttributes = [
@@ -57,7 +60,8 @@ public class Magnitude: ScreenSaverView {
             
             //Set text for light mode
             quoteAttributes = [
-                NSForegroundColorAttributeName: NSColor.blackColor()
+                NSForegroundColorAttributeName: NSColor.blackColor(),
+                NSFontAttributeName: fontA,
             ]
             
             authorAttributes = [
@@ -72,7 +76,7 @@ public class Magnitude: ScreenSaverView {
         background.setFill()
         NSBezierPath.fillRect(rect)
         
-        let quote = "\"Great companies are built on great products.\"" + String(bounds.width) + String(bounds.height) as NSString
+        let quote = "\"Great companies are built on great products.\"" as String
         let author = "-" + "Elon Musk"
         
         let attributes = [
@@ -82,18 +86,33 @@ public class Magnitude: ScreenSaverView {
         let quoteSize = quote.sizeWithAttributes(quoteAttributes as? [String: AnyObject])
         let authorSize = author.sizeWithAttributes(authorAttributes as? [String: AnyObject])
         
+        var quoteRect: CGRect!
+        
+        //More lines
+        if(quote.characters.count > 50){
+            //Get ready for another line
+            quoteRect = CGRect(
+                x: round((bounds.width - quoteSize.width / 2) / 2),
+                y: round((bounds.height - quoteSize.height) / 2) + quoteSize.height,
+                width: quoteSize.width / 2,
+                height: quoteSize.height * 2
+            )
+        }
+        else{
+            //All good as is
+            quoteRect = CGRect(
+                x: round((bounds.width - quoteSize.width) / 2),
+                y: round((bounds.height - quoteSize.height) / 2),
+                width: quoteSize.width,
+                height: quoteSize.height
+            )
+        }
+        
         let authorRect = CGRect(
             x: round((bounds.width - authorSize.width) / 2),
-            y: round(((bounds.height - authorSize.height) / 2) - 20),
+            y: round(((bounds.height - authorSize.height) / 2) - 40),
             width: authorSize.width,
             height: authorSize.height
-        )
-        
-        let quoteRect = CGRect(
-            x: round((bounds.width - quoteSize.width) / 2),
-            y: round((bounds.height - quoteSize.height) / 2),
-            width: quoteSize.width,
-            height: quoteSize.height
         )
         
         //Draw text on canvas
@@ -144,5 +163,30 @@ public class Magnitude: ScreenSaverView {
     private func initialize() {
         // Set to 15fps
         animationTimeInterval = 1.0 / 4.0
+        updateFont()
     }
+    
+    private func updateFont() {
+        fontA = fontWithSizeA(bounds.size.width / 32)
+    }
+    
+    private func fontWithSizeA(fontSize: CGFloat) -> NSFont {
+        let fontA: NSFont
+        if #available(OSX 10.11, *) {
+            fontA = NSFont.systemFontOfSize(fontSize, weight: NSFontWeightThin)
+        } else {
+            fontA = NSFont(name: "HelveticaNeue-Thin", size: fontSize)!
+        }
+        
+        let fontDescriptor = fontA.fontDescriptor.fontDescriptorByAddingAttributes([
+            NSFontFeatureSettingsAttribute: [
+                [
+                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
+                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
+                ]
+            ]
+            ])
+        return NSFont(descriptor: fontDescriptor, size: fontSize)!
+    }
+    
 }
