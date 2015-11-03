@@ -91,7 +91,7 @@ public class Magnitude: ScreenSaverView {
         background.setFill()
         NSBezierPath.fillRect(rect)
         
-        let quote = "\"Being the richest man in the cemetery doesn't matter to me.\"" as String
+        let quote = "\"Being the richest man.\"" as String
         let author = "-" + "Elon Musk"
         
         let attributes = [
@@ -153,7 +153,7 @@ public class Magnitude: ScreenSaverView {
             //Adjust author to fit
             authorRect = CGRect(
                 x: round((bounds.width - authorSize.width) / 2),
-                y: round(((bounds.height - quoteSize.height) / 2) - (quoteSize.height + (authorSize.height / 2))),
+                y: round(((bounds.height - quoteSize.height) / 1.75) - (quoteSize.height + (authorSize.height / 2))),
                 width: authorSize.width,
                 height: authorSize.height
             )
