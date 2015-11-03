@@ -91,7 +91,7 @@ public class Magnitude: ScreenSaverView {
         background.setFill()
         NSBezierPath.fillRect(rect)
         
-        let quote = "\"Being the richest man.\"" as String
+        let quote = "\"Design is not just what it looks like and feels like. Design is how it works.\"" as String
         let author = "-" + "Elon Musk"
         
         let attributes = [
