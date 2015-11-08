@@ -8,8 +8,27 @@
 
 import ScreenSaver
 import Cocoa
+import SystemConfiguration
+
 
 public class Magnitude: ScreenSaverView {
+    
+    //Connectivity test - http://stackoverflow.com/questions/30743408/check-for-internet-conncetion-in-swift-2-ios-9
+    func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+    }
     
     //Set default quote
     struct Core {
@@ -242,17 +261,108 @@ public class Magnitude: ScreenSaverView {
     }
     
     public override func startAnimation() {
-        //let quoteTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
         
-        let returnedJSON = parseJSON(getJSON("http://10.0.0.4/quote"))
-        //print(returnedJSON!["data"]![3])
+        let returnedJSON:AnyObject
+        let number:Int
+        
+        if isConnectedToNetwork(){
+            number = Int(arc4random_uniform(300-0) + 0)
+            //Network present, get some quotes
+            returnedJSON = parseJSON(getJSON("http://10.0.0.4/quote"))!
+        }
+        else{
+            //Fall back to some generic quotes
+            number = Int(arc4random_uniform(18-0) + 0)
+
+            returnedJSON = [
+                [
+                    "quote": "Wrinkles should merely indicate where smiles have been.",
+                    "author": "Mark Twain"
+                ],
+                [
+                    "quote": "All diseases run into one, old age.",
+                    "author": "Ralph Waldo Emerson"
+                ],
+                [
+                    "quote": "Every man over forty is a scoundrel.",
+                    "author": "George Bernard Shaw"
+                ],
+                [
+                    "quote": "Age is a very high price to pay for maturity.",
+                    "author": "Tom Stoppard"
+                ],
+                [
+                    "quote": "Old age is no place for sissies.",
+                    "author": "Bette Davis"
+                ],
+                [
+                    "quote": "It takes a long time to become young.",
+                    "author": "Pablo Picasso"
+                ],
+                [
+                    "quote": "After thirty, a body has a mind of its own.",
+                    "author": "Bette Midler"
+                ],
+                [
+                    "quote": "Forty is the old age of youth, fifty is the youth of old age.",
+                    "author": "Hosea Ballou"
+                ],
+                [
+                    "quote": "Old age is fifteen years older than I am.",
+                    "author": "Oliver Wendell Holmes"
+                ],
+                [
+                    "quote": "It is sad to grow old but nice to ripen.",
+                    "author": "Brigitte Bardot"
+                ],
+                [
+                    "quote": "Age is how we determine how valuable you are.",
+                    "author": "Jane Elliot"
+                ],
+                [
+                    "quote": "Aging seems to be the only available way to live a long life.",
+                    "author": "Kitty O'Neill Collins"
+                ],
+                [
+                    "quote": "Old age is a shipwreck.",
+                    "author": "Charles de Gaulle"
+                ],
+                [
+                    "quote": "Peace is the one condition of survival in this nuclear age.",
+                    "author": "Adlai E. Stevenson"
+                ],
+                [
+                    "quote": "I wish I'd gotten sober at a younger age.",
+                    "author": "Janice Dickinson"
+                ],
+                [
+                    "quote": "Nothing amazes me anymore.",
+                    "author": "David Beckham"
+                ],
+                [
+                    "quote": "Amazement awaits us at every corner.",
+                    "author": "James Broughton"
+                ],
+                [
+                    "quote": "Your best teacher is your last mistake.",
+                    "author": "Ralph Nader"
+                ],
+                [
+                    "quote": "Imagination creates reality.",
+                    "author": "Richard Wagner"
+                ]
+            ]
+        }
         
         func update(){
-            //Update quote every 10 seconds
-            let number = Int(arc4random_uniform(300-0) + 0)
-            Core.quote = returnedJSON!["data"]![number]!["quote"]! as! NSString
-            Core.author = returnedJSON!["data"]![number]!["author"]! as! NSString
-            //initialize()
+            if isConnectedToNetwork(){
+                Core.quote = returnedJSON["data"]!![number]!["quote"]! as! NSString
+                Core.author = returnedJSON["data"]!![number]!["author"]! as! NSString
+            }
+            else{
+                Core.quote = returnedJSON[number]["quote"] as! NSString
+                Core.author = returnedJSON[number]["author"] as! NSString
+            }
         }
         
         update()
