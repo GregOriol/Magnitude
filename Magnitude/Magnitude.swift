@@ -756,9 +756,6 @@ public class Magnitude: ScreenSaverView {
                 "author": "Jean Racine"
             ],
             
-            //300
-            
-            
             [
                 "quote": "I write music with an exclamation point!",
                 "author": "Norman Schwarzkopf"
@@ -852,9 +849,429 @@ public class Magnitude: ScreenSaverView {
                 "author": "Louis D. Brandeis"
             ],
             
+            
+            
             //300
             
             
+            
+            [
+                "quote": "There are no shortcuts in evolution.",
+                "author": "Louis D. Brandeis"
+            ],
+            [
+                "quote": "Leave the atom alone.",
+                "author": "E. Y. Harburg"
+            ],
+            [
+                "quote": "Change is such hard work.",
+                "author": "Billy Crystal"
+            ],
+            [
+                "quote": "Politics is the womb in which war develops.",
+                "author": "Karl Von Clausewitz"
+            ],
+            [
+                "quote": "The idea is to die young as late as possible.",
+                "author": "Ashley Montagu"
+            ],
+            [
+                "quote": "The want of money is the root of all evil.",
+                "author": "Samuel Butler"
+            ],
+            [
+                "quote": "To be an ideal guest, stay at home.",
+                "author": "E. W. Howe"
+            ],
+            [
+                "quote": "If you like overheads, you'll love PowerPoint.",
+                "author": "Edward Tufte"
+            ],
+            [
+                "quote": "Sports is like a war without the killing.",
+                "author": "Ted Turner"
+            ],
+            [
+                "quote": "As usual, there is a great woman behind every idiot.",
+                "author": "John Lennon"
+            ],
+            [
+                "quote": "I haven't got a lot of patience.",
+                "author": "Jeffrey Katzenberg"
+            ],
+            [
+                "quote": "The details are not the details. They make the design.",
+                "author": "Charles Eames"
+            ],
+            [
+                "quote": "Music is the refuge of souls ulcerated by happiness.",
+                "author": "Emile M. Cioran"
+            ],
+            [
+                "quote": "Science is organized knowledge.",
+                "author": "Herbert Spencert"
+            ],
+            [
+                "quote": "At my age it is unseemly to be pessimistic.",
+                "author": "Naguib Mahfouz"
+            ],
+            [
+                "quote": "Human misery is too great for men to do without faith.",
+                "author": "Heinrich Heine"
+            ],
+            [
+                "quote": "Nobody likes, you know, the ugly parts of politics.",
+                "author": "Barbara Bush"
+            ],
+            [
+                "quote": "I definitely believe in marriage.",
+                "author": "Michael Strahan"
+            ],
+            [
+                "quote": "Do not fear death so much but rather the inadequate life.",
+                "author": "Bertolt Brecht"
+            ],
+                        [
+                "quote": "War would end if the dead could return.",
+                "author": "Stanley Baldwin"
+            ],
+            [
+                "quote": "If you make friends with yourself you will never be alone.",
+                "author": "Maxwell Maltz"
+            ],
+            [
+                "quote": "Intelligence is a moral category.",
+                "author": "Theodor Adorno"
+            ],
+            [
+                "quote": "Old friends are best.",
+                "author": "John Selden"
+            ],
+            [
+                "quote": "Learning how to fly, for me, was so euphoric.",
+                "author": "Hilary Swank"
+            ],
+            [
+                "quote": "Patience is the best medicine.",
+                "author": "John Florio"
+            ],
+            [
+                "quote": "I never trusted good-looking boys.",
+                "author": "Frances McDormand"
+            ],
+            [
+                "quote": "I fear the Greeks, even when they bring gifts.",
+                "author": "Virgil"
+            ],
+            [
+                "quote": "I hope for peace and sanity - it's the same thing.",
+                "author": "Studs Terkel"
+            ],
+            [
+                "quote": "In politics the choice is constantly between two evils.",
+                "author": "John Morley"
+            ],
+            [
+                "quote": "I haven't understood a bar of music in my life, but I have felt it.",
+                "author": "Igor Stravinsky"
+            ],
+            [
+                "quote": "War is at its best barbarism.",
+                "author": "William Tecumseh Sherman"
+            ],
+            [
+                "quote": "I understand it's my role to realize people's dreams.",
+                "author": "Ayumi Hamasaki"
+            ],
+            [
+                "quote": "I love you more than my own skin.",
+                "author": "Frida Kahlo"
+            ],
+            [
+                "quote": "A joke is a very serious thing.",
+                "author": "Winston Churchill"
+            ],
+            [
+                "quote": "Culture is the arts elevated to a set of beliefs.",
+                "author": "Thomas Wolfe"
+            ],
+            [
+                "quote": "Poetry is about the grief. Politics is about the grievance.",
+                "author": "Robert Frost"
+            ],
+            [
+                "quote": "In youth we learn in age we understand.",
+                "author": "Marie von Ebner-Eschenbach"
+            ],
+            [
+                "quote": "Beauty is variable, ugliness is constant.",
+                "author": "Douglas Horton"
+            ],
+            [
+                "quote": "I don't like being alone.",
+                "author": "Cristiano Ronaldo"
+            ],
+            [
+                "quote": "Everything in war is very simple. But the simplest thing is difficult.",
+                "author": "Karl Von Clausewitz"
+            ],
+            
+            
+            
+            [
+                "quote": "The most dangerous food is wedding cake.",
+                "author": "James Thurber"
+            ],
+            [
+                "quote": "My buildings are more famous than me.",
+                "author": "Jean Nouvel"
+            ],
+            [
+                "quote": "You can't trust actors.",
+                "author": "Emma Roberts"
+            ],
+            [
+                "quote": "The rarest quality in an epitaph is truth.",
+                "author": "Henry David Thoreau"
+            ],
+            [
+                "quote": "Life is about family and technology.",
+                "author": "Mark Goddard"
+            ],
+            [
+                "quote": "Education is the art of making man ethical.",
+                "author": "Georg Wilhelm Friedrich Hegel"
+            ],
+            [
+                "quote": "Sometimes I'm so sweet even I can't stand it.",
+                "author": "Julie Andrews"
+            ],
+            [
+                "quote": "The power of imagination makes us infinite.",
+                "author": "John Muir"
+            ],
+            [
+                "quote": "Books are not men and yet they stay alive.",
+                "author": "Henry Ward Beecher"
+            ],
+            
+            
+            [
+                "quote": "Any revival in which I am involved is liable to change.",
+                "author": "Tom Stoppard"
+            ],
+            [
+                "quote": "There is more to life than increasing its speed.",
+                "author": "Mahatma Gandhi"
+            ],
+            [
+                "quote": "Life is anything that dies when you stomp on it.",
+                "author": "Dave Barry"
+            ],
+            [
+                "quote": "Freedom is a system based on courage.",
+                "author": "Charles Peguy"
+            ],
+            [
+                "quote": "Learning something new is fun.",
+                "author": "Alex Trebek"
+            ],
+            [
+                "quote": "We're not trying to change the world just music.",
+                "author": "Jonathan Davis"
+            ],
+            
+            
+            [
+                "quote": "Mediocre men often have the most acquired knowledge.",
+                "author": "Claude Bernard"
+            ],
+            [
+                "quote": "I make movies I want to see.",
+                "author": "Neil LaBute"
+            ],
+            [
+                "quote": "Old age is just a record of one's whole life.",
+                "author": "Muhammad Ali"
+            ],
+            [
+                "quote": "All lasting business is built on friendship.",
+                "author": "Alfred A. Montapert"
+            ],
+            [
+                "quote": "My mother taught me to treat a lady respectfully.",
+                "author": "Chris Brown"
+            ],
+            [
+                "quote": "Art must take reality by surprise.",
+                "author": "Francoise Sagan"
+            ],
+            [
+                "quote": "It's a funny old world.",
+                "author": "Margaret Thatcher"
+            ],
+            [
+                "quote": "Nothing says holidays, like a cheese log.",
+                "author": "Ellen DeGeneres"
+            ],
+            
+            
+            [
+                "quote": "Who loves, raves.",
+                "author": "Lord Byron"
+            ],
+            [
+                "quote": "Early to bed, early to rise, work like hell, and advertise.",
+                "author": "Laurence J. Peter"
+            ],
+            [
+                "quote": "I admire people who are, by nature, kind and fair to others.",
+                "author": "Sidney Sheldon"
+            ],
+            [
+                "quote": "Curiosity is one of the great secrets of happiness.",
+                "author": "Bryant H. McGill"
+            ],
+            [
+                "quote": "Traveling is seeing it is the implicit that we travel by.",
+                "author": "Cynthia Ozick"
+            ],
+            [
+                "quote": "Poetry heals the wounds inflicted by reason.",
+                "author": "Novalis"
+            ],
+            [
+                "quote": "I love change, I need it.",
+                "author": "Rod Stewart"
+            ],
+            [
+                "quote": "Movies make you immortal and ageless.",
+                "author": "Kristin Scott Thomas"
+            ],
+            [
+                "quote": "Information is not knowledge.",
+                "author": "Albert Einstein"
+            ],
+            [
+                "quote": "Children learn to smile from their parents.",
+                "author": "Shinichi Suzuki"
+            ],
+            [
+                "quote": "Wealth brings strength, strength confidence.",
+                "author": "John Lothrop Motley"
+            ],
+            [
+                "quote": "To enjoy being famous, you need to have a screw loose.",
+                "author": "Diablo Cody"
+            ],
+            [
+                "quote": "There is a learning quality in all of our shows.",
+                "author": "Trisha Goddard"
+            ],
+            [
+                "quote": "You cannot find peace by avoiding life.",
+                "author": "Virginia Woolf"
+            ],
+            
+            [
+                "quote": "If a tree dies, plant another in its place.",
+                "author": "Carolus Linnaeus"
+            ],
+            [
+                "quote": "I hope I die before I get old.",
+                "author": "Roger Daltrey"
+            ],
+            [
+                "quote": "Either war is obsolete, or men are.",
+                "author": "R. Buckminster Fuller"
+            ],
+            [
+                "quote": "You cannot create experience. You must undergo it.",
+                "author": "Albert Camus"
+            ],
+            [
+                "quote": "Books are funny little portable pieces of thought.",
+                "author": "Susan Sontag"
+            ],
+            [
+                "quote": "History is Philosophy teaching by example.",
+                "author": "Thucydides"
+            ],
+            [
+                "quote": "Who sows fear, reaps weapons.",
+                "author": "Friedrich Durrenmatt"
+            ],
+            [
+                "quote": "I ran into Isosceles. He had a great idea for a new triangle!",
+                "author": "Woody Allen"
+            ],
+            [
+                "quote": "Life is the art of drawing without an eraser.",
+                "author": "John W. Gardner"
+            ],
+            [
+                "quote": "People respect nonfiction but they read novels.",
+                "author": "E. O. Wilson"
+            ],
+            [
+                "quote": "Fear is the tax that conscience pays to guilt.",
+                "author": "George Sewell"
+            ],
+            [
+                "quote": "Money is not the only answer, but it makes a difference.",
+                "author": "Barack Obama"
+            ],
+            [
+                "quote": "We work to become, not to acquire.",
+                "author": "Elbert Hubbard"
+            ],
+            [
+                "quote": "I had sadness for breakfast.",
+                "author": "Andy Milonakis"
+            ],
+            [
+                "quote": "I need to do things on my own, need to be left alone.",
+                "author": "Henry Rollins"
+            ],
+            [
+                "quote": "Hope thou not much, and fear thou not at all.",
+                "author": "Algernon Charles Swinburne"
+            ],
+            [
+                "quote": "All my life, my heart has yearned for a thing I cannot name.",
+                "author": "Andre Breton"
+            ],
+            [
+                "quote": "The good man is the friend of all living things.",
+                "author": "Mahatma Gandhi"
+            ],
+            [
+                "quote": "Men often act knowingly against their interest.",
+                "author": "David Hume"
+            ],
+            [
+                "quote": "Courage is always rewarded.",
+                "author": "Kenny Loggins"
+            ],
+            [
+                "quote": "We work to become, not to acquire.",
+                "author": "Elbert Hubbard"
+            ],
+            [
+                "quote": "Necessity does the work of courage.",
+                "author": "Nicholas M. Butler"
+            ],
+            [
+                "quote": "I'm obsessed with food!",
+                "author": "Sofia Vergara"
+            ],
+            
+            //300
+            
+            [
+                "quote": "All science is either physics or stamp collecting.",
+                "author": "Ernest Rutherford"
+            ],
         ]
         
         //Update every 24 hours
