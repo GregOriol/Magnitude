@@ -37,7 +37,7 @@ public class Magnitude: ScreenSaverView {
     private var fontA: NSFont!
     private var fontB: NSFont!
     private var fontC: NSFont!
-
+    
     func isNight(time: Int) -> Bool{
         if(time >= 6 && time < 22){
             //Is day
@@ -62,7 +62,7 @@ public class Magnitude: ScreenSaverView {
         
         let date = NSDate()
         let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("getTime"), userInfo: nil, repeats: true)
-
+        
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.Center
         
@@ -119,7 +119,7 @@ public class Magnitude: ScreenSaverView {
         
         background.setFill()
         NSBezierPath.fillRect(rect)
-
+        
         
         let attributes = [
             NSForegroundColorAttributeName: NSColor.blackColor()
@@ -130,8 +130,8 @@ public class Magnitude: ScreenSaverView {
         
         var quoteRect: CGRect!
         var authorRect: CGRect!
-    
-
+        
+        
         let quoteCount = Core.quote as String
         
         //More lines
@@ -151,7 +151,7 @@ public class Magnitude: ScreenSaverView {
                 width: authorSize.width,
                 height: authorSize.height
             )
-
+            
         }
             
         else if(quoteCount.characters.count > 50){
@@ -198,7 +198,7 @@ public class Magnitude: ScreenSaverView {
         var time = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         
         let timeSize = time.sizeWithAttributes(timeAttributes as? [String: AnyObject])
-
+        
         let timeRect = CGRect(
             x: round((bounds.width - timeSize.width) / 2),
             y: 15,
@@ -215,7 +215,7 @@ public class Magnitude: ScreenSaverView {
         }
         
         time.drawInRect(timeRect, withAttributes: timeAttributes as? [String: AnyObject])
-
+        
         //NSCursor.hide()
     }
     
@@ -321,5 +321,5 @@ public class Magnitude: ScreenSaverView {
             ])
         return NSFont(descriptor: fontDescriptor, size: fontSize)!
     }
-
+    
 }
