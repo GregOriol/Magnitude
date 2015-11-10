@@ -17,6 +17,12 @@ Magnitude is an extremely minimalistic screen saver for Mac thats displays inspi
   * Offline mode (automatically activated, quotes limited)
   
 #License
-Magnitude is licensed under the MIT license.(http://opensource.org/licenses/MIT) It's pretty simple, but here's the definition we get
+Magnitude is licensed under the MIT license (http://opensource.org/licenses/MIT) It's pretty simple, but here's the definition we get
 
 The MIT License is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don't hold you liable.
+
+##Acknowledgements
+
+**Magnitude** is authored and maintained by [Idris Khenchil](https://idriskhenchil.me)
+
+Feel free to help out and contribute! 
