@@ -14,6 +14,7 @@ Magnitude is an extremely minimalistic screen saver for Mac thats displays inspi
   * New quotes everytime Magnitude activates.
   * Day & Night mode.
   * Keep track of time with the lovely clock at the bottom. 
+  * Offline mode (automatically activated, quotes limited).
   
 #License
 Magnitude is licensed under the MIT license.(http://opensource.org/licenses/MIT) It's pretty simple, but here's the definition we get
