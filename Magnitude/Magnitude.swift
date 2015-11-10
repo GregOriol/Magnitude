@@ -73,7 +73,7 @@ public class Magnitude: ScreenSaverView {
     
     public override func drawRect(rect: NSRect) {
         let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("getTime"), userInfo: nil, repeats: true)
-
+        
         var background:NSColor
         var quoteAttributes: NSDictionary!
         var authorAttributes: NSDictionary!
@@ -230,7 +230,7 @@ public class Magnitude: ScreenSaverView {
         }
         
         time.drawInRect(timeRect, withAttributes: timeAttributes as? [String: AnyObject])
-
+        
     }
     
     //Called once
@@ -365,7 +365,7 @@ public class Magnitude: ScreenSaverView {
         }
         
         update()
-
+        
     }
     
     
