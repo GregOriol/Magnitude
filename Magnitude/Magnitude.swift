@@ -10,7 +10,6 @@ import ScreenSaver
 import Cocoa
 import SystemConfiguration
 
-
 public class Magnitude: ScreenSaverView {
     
     //Connectivity test - http://stackoverflow.com/questions/30743408/check-for-internet-conncetion-in-swift-2-ios-9
@@ -36,10 +35,12 @@ public class Magnitude: ScreenSaverView {
         static var author:NSString! = "-Elon Musk"
     }
     
+    //Retrieve JSON
     func getJSON(urlToRequest: String) -> NSData{
         return NSData(contentsOfURL: NSURL(string: urlToRequest)!)!
     }
     
+    //Parse JSON
     func parseJSON(inputData: NSData) -> NSDictionary? {
         do {
             if let feed = try NSJSONSerialization.JSONObjectWithData(inputData, options: .MutableContainers) as? NSDictionary {
@@ -53,10 +54,12 @@ public class Magnitude: ScreenSaverView {
         return nil
     }
     
+    //Set font variables
     private var fontA: NSFont!
     private var fontB: NSFont!
     private var fontC: NSFont!
     
+    //Check if it's day or night
     func isNight(time: Int) -> Bool{
         if(time >= 6 && time < 22){
             //Is day
@@ -68,27 +71,23 @@ public class Magnitude: ScreenSaverView {
         }
     }
     
-    
     public override func drawRect(rect: NSRect) {
-        
+        let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("getTime"), userInfo: nil, repeats: true)
+
         var background:NSColor
         var quoteAttributes: NSDictionary!
         var authorAttributes: NSDictionary!
         var timeAttributes: NSDictionary!
         
-        var todaysAuthor:AnyObject
-        var todaysQuote:AnyObject
-        
-        let date = NSDate()
-        let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("getTime"), userInfo: nil, repeats: true)
-        
-        var paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.Center
         
+        let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Hour, .Minute], fromDate: date)
         let hour = components.hour
         
+        //Set theme depending on if its day or night
         if(isNight(hour)){
             //Set background as dark
             background = NSColor(red:0.01, green:0.01, blue:0, alpha:1)
@@ -136,24 +135,22 @@ public class Magnitude: ScreenSaverView {
             ]
         }
         
+        //Set background
         background.setFill()
         NSBezierPath.fillRect(rect)
         
-        
-        let attributes = [
-            NSForegroundColorAttributeName: NSColor.blackColor()
-        ]
-        
+        //Get string size with attributes to draw rect
         let quoteSize = Core.quote!.sizeWithAttributes(quoteAttributes as? [String: AnyObject])
         let authorSize = Core.author!.sizeWithAttributes(authorAttributes as? [String: AnyObject])
         
+        //Set rect variables
         var quoteRect: CGRect!
         var authorRect: CGRect!
         
-        
+        //Get quote count
         let quoteCount = Core.quote as String
         
-        //More lines
+        //Check how long a quote is to see if more lines are needed
         if(quoteCount.characters.count > 100){
             //Get ready for another line
             quoteRect = CGRect(
@@ -212,7 +209,6 @@ public class Magnitude: ScreenSaverView {
         Core.quote!.drawInRect(quoteRect, withAttributes: quoteAttributes as? [String: AnyObject])
         Core.author!.drawInRect(authorRect, withAttributes: authorAttributes as? [String: AnyObject])
         
-        
         //Add time label
         var time = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .NoStyle, timeStyle: .ShortStyle) as NSString
         
@@ -234,8 +230,7 @@ public class Magnitude: ScreenSaverView {
         }
         
         time.drawInRect(timeRect, withAttributes: timeAttributes as? [String: AnyObject])
-        
-        //NSCursor.hide()
+
     }
     
     //Called once
@@ -256,24 +251,23 @@ public class Magnitude: ScreenSaverView {
     
     private func initialize() {
         // Set to 15fps
-        animationTimeInterval = 0.15
+        animationTimeInterval = 1.0 / 4.0
         updateFont()
-    }
-    
-    public override func startAnimation() {
         
         let returnedJSON:AnyObject
         let number:Int
         
         if isConnectedToNetwork(){
-            number = Int(arc4random_uniform(300-0) + 0)
+            //Generate random number for quote
+            number = Int(arc4random_uniform(100-0) + 0)
+            
             //Network present, get some quotes
             returnedJSON = parseJSON(getJSON("http://10.0.0.4/quote"))!
         }
         else{
-            //Fall back to some generic quotes
+            //Fall back to some generic quotes if no network is present
             number = Int(arc4random_uniform(18-0) + 0)
-
+            
             returnedJSON = [
                 [
                     "quote": "Wrinkles should merely indicate where smiles have been.",
@@ -354,28 +348,36 @@ public class Magnitude: ScreenSaverView {
             ]
         }
         
+        //Set quotes and author
         func update(){
             if isConnectedToNetwork(){
-                Core.quote = returnedJSON["data"]!![number]!["quote"]! as! NSString
-                Core.author = returnedJSON["data"]!![number]!["author"]! as! NSString
+                let rawQuote = returnedJSON["data"]!![number]!["quote"]!
+                let rawAuthor = returnedJSON["data"]!![number]!["author"]!
+                Core.quote =  "\"" + (rawQuote! as! String) + "\""
+                Core.author = "-" + String(rawAuthor!)
             }
             else{
-                Core.quote = returnedJSON[number]["quote"] as! NSString
-                Core.author = returnedJSON[number]["author"] as! NSString
+                let rawQuote = returnedJSON[number]["quote"]!
+                let rawAuthor = returnedJSON[number]["author"]!
+                Core.quote = "\"" + (rawQuote! as! String) + "\""
+                Core.author = "-" + (rawAuthor! as! String)
             }
         }
         
         update()
+
     }
     
     
+    //Resize font as needed
     private func updateFont() {
-        fontA = fontWithSizeA(bounds.size.width / 32)
-        fontB = fontWithSizeB(bounds.size.width / 55)
-        fontC = fontWithSizeC(bounds.size.width / 52)
+        fontA = fontWithSize(bounds.size.width / 32)
+        fontB = fontWithSize(bounds.size.width / 55)
+        fontC = fontWithSize(bounds.size.width / 52)
     }
     
-    private func fontWithSizeA(fontSize: CGFloat) -> NSFont {
+    //Retrieve font - https://github.com/soffes/WhatColorIsIt/blob/master/What%20Color%20Is%20It/View.swift#L110
+    private func fontWithSize(fontSize: CGFloat) -> NSFont {
         let fontA: NSFont
         if #available(OSX 10.11, *) {
             fontA = NSFont.systemFontOfSize(fontSize, weight: NSFontWeightThin)
@@ -393,43 +395,4 @@ public class Magnitude: ScreenSaverView {
             ])
         return NSFont(descriptor: fontDescriptor, size: fontSize)!
     }
-    
-    private func fontWithSizeB(fontSize: CGFloat) -> NSFont {
-        let fontB: NSFont
-        if #available(OSX 10.11, *) {
-            fontB = NSFont.systemFontOfSize(fontSize, weight: NSFontWeightUltraLight)
-        } else {
-            fontB = NSFont(name: "HelveticaNeue-Thin", size: fontSize)!
-        }
-        
-        let fontDescriptor = fontB.fontDescriptor.fontDescriptorByAddingAttributes([
-            NSFontFeatureSettingsAttribute: [
-                [
-                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
-                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
-                ]
-            ]
-            ])
-        return NSFont(descriptor: fontDescriptor, size: fontSize)!
-    }
-    
-    private func fontWithSizeC(fontSize: CGFloat) -> NSFont {
-        let fontC: NSFont
-        if #available(OSX 10.11, *) {
-            fontC = NSFont.systemFontOfSize(fontSize, weight: NSFontWeightThin)
-        } else {
-            fontC = NSFont(name: "HelveticaNeue-Thin", size: fontSize)!
-        }
-        
-        let fontDescriptor = fontC.fontDescriptor.fontDescriptorByAddingAttributes([
-            NSFontFeatureSettingsAttribute: [
-                [
-                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
-                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
-                ]
-            ]
-            ])
-        return NSFont(descriptor: fontDescriptor, size: fontSize)!
-    }
-    
 }
