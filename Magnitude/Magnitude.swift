@@ -234,6 +234,8 @@ public class Magnitude: ScreenSaverView {
         }
         
         time.drawInRect(timeRect, withAttributes: timeAttributes as? [String: AnyObject])
+        
+        NSCursor.setHiddenUntilMouseMoves(true)
     }
     
     //Called once
