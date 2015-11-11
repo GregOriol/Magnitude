@@ -257,14 +257,26 @@ public class Magnitude: ScreenSaverView {
         animationTimeInterval = 0.15
         updateFont()
         
-        let returnedJSON:AnyObject
+        var returnedJSON:AnyObject?
         let number:Int
         
         if isConnectedToNetwork(){
             number = Int(arc4random_uniform(5-0) + 0)
             
             //Network present, get some quotes
-            returnedJSON = parseJSON(getJSON("https://idriskhenchil.me/quote"))!
+            returnedJSON = parseJSON(getJSON("http://idriskhenchil.me/quote"))
+            if(returnedJSON == nil){
+                //not good
+                let string = "{\r\n    \"data\": [\r\n        {\r\n            \"quote\": \"It's a good thing we don't get all the government we pay for.\",\r\n            \"author\": \"Will Rogers\"\r\n        },\r\n        {\r\n            \"quote\": \"Advertising is legalized lying.\",\r\n            \"author\": \"H. G. Wells\"\r\n        },\r\n        {\r\n            \"quote\": \"I'm not afraid of aging.\",\r\n            \"author\": \"Shelley Duvall\"\r\n        },\r\n        {\r\n            \"quote\": \"Age is a very high price to pay for maturity.\",\r\n            \"author\": \"Tom Stoppard\"\r\n        },\r\n        {\r\n            \"quote\": \"Old age is no place for sissies.\",\r\n            \"author\": \"Bette Davis\"\r\n        },\r\n        {\r\n            \"quote\": \"It takes a long time to become young.\",\r\n            \"author\": \"Pablo Picasso\"\r\n        },\r\n        {\r\n            \"quote\": \"A woman's health is her capital.\",\r\n            \"author\": \"Harriet Beecher Stowe\"\r\n        },\r\n        {\r\n            \"quote\": \"Nothing amazes me anymore.\",\r\n            \"author\": \"David Beckham\"\r\n        },\r\n        {\r\n            \"quote\": \"Fear doesn't exist anywhere except in the mind.\",\r\n            \"author\": \"Dale Carnegie\"\r\n        },\r\n        {\r\n            \"quote\": \"The art of being wise is the art of knowing what to overlook.\",\r\n            \"author\": \"William James\"\r\n        }\r\n    ]\r\n}"
+                
+                let data = string.dataUsingEncoding(NSUTF8StringEncoding)
+                
+                returnedJSON = parseJSON(data!)
+            }
+            else{
+                //good
+                returnedJSON = parseJSON(getJSON("http://idriskhenchil.me/quote"))!
+            }
         }
         else{
             //Fall back to some generic quotes
@@ -352,14 +364,14 @@ public class Magnitude: ScreenSaverView {
         
         func update(){
             if isConnectedToNetwork(){
-                let rawQuote = returnedJSON["data"]!![number]!["quote"]!
-                let rawAuthor = returnedJSON["data"]!![number]!["author"]!
+                let rawQuote = returnedJSON!["data"]!![number]!["quote"]!
+                let rawAuthor = returnedJSON!["data"]!![number]!["author"]!
                 Core.quote =  "\"" + (rawQuote! as! String) + "\""
                 Core.author = "-" + String(rawAuthor!)
             }
             else{
-                let rawQuote = returnedJSON[number]["quote"]!
-                let rawAuthor = returnedJSON[number]["author"]!
+                let rawQuote = returnedJSON![number]["quote"]!
+                let rawAuthor = returnedJSON![number]["author"]!
                 Core.quote = "\"" + (rawQuote! as! String) + "\""
                 Core.author = "-" + (rawAuthor! as! String)
             }
@@ -374,7 +386,6 @@ public class Magnitude: ScreenSaverView {
         fontC = fontWithSize(bounds.size.width / 52)
     }
     
-    //Get a font - https://github.com/soffes/WhatColorIsIt/blob/master/What%20Color%20Is%20It/View.swift#L110
     private func fontWithSize(fontSize: CGFloat) -> NSFont {
         let fontA: NSFont
         if #available(OSX 10.11, *) {
