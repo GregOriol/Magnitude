@@ -262,8 +262,9 @@ public class Magnitude: ScreenSaverView {
         
         if isConnectedToNetwork(){
             number = Int(arc4random_uniform(5-0) + 0)
+            
             //Network present, get some quotes
-            returnedJSON = parseJSON(getJSON("http://idriskhenchil.me/quote"))!
+            returnedJSON = parseJSON(getJSON("https://idriskhenchil.me/quote"))!
         }
         else{
             //Fall back to some generic quotes
@@ -373,6 +374,7 @@ public class Magnitude: ScreenSaverView {
         fontC = fontWithSize(bounds.size.width / 52)
     }
     
+    //Get a font - https://github.com/soffes/WhatColorIsIt/blob/master/What%20Color%20Is%20It/View.swift#L110
     private func fontWithSize(fontSize: CGFloat) -> NSFont {
         let fontA: NSFont
         if #available(OSX 10.11, *) {
