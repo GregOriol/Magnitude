@@ -1,8 +1,9 @@
 # Magnitude
 Magnitude is an extremely minimalistic screen saver for Mac thats displays inspirational quotes.
 
-<img src="http://i.imgur.com/aGHdoMl.png" align="center" width="550" >
-
+<p align="center">
+  <img src="http://i.imgur.com/aGHdoMl.png" align="center" width="550" >
+</p>
 
 #Installation
   1. [Download Magnitude](https://google.com)
