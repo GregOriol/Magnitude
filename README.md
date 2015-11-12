@@ -6,7 +6,7 @@ Magnitude is an extremely minimalistic screen saver for Mac thats displays inspi
 </p>
 
 #Installation
-  1. [Download Magnitude](https://idriskhenchil.me/templates/magnitude/Magnitude.saver.zip)
+  1. [Download Magnitude](https://idriskhenchil.me/templates/magnitude/download/)
   2. Unzip the downloaded file
   3. Double click on **Magnitude.saver**
   4. Enjoy!
